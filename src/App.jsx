@@ -1,4 +1,4 @@
-
+import { ToastContainer } from 'react-toastify';
 import './App.css'
 
 import AvailablePlayers from './components/AvailablePlayers/AvailablePlayers'
@@ -24,12 +24,12 @@ function App() {
 
   const removePlayer = (p) => {
     // console.log(p);
-    const filterData = purchasePlayers.filter(player => player.player_Name!== p.player_Name)
+    const filterData = purchasePlayers.filter(player => player.player_Name !== p.player_Name)
     // console.log(filterData);
     setPurchasePlayers(filterData)
     setAvailableBalance(availableBalance + parseInt(p.price.split('$')[1]))
-    
-    
+
+
   }
 
   return (
@@ -38,7 +38,7 @@ function App() {
 
       <div className='max-w-[1100px] mx-auto flex justify-between items-center'>
         <h3 className='text-2xl font-bold'>{
-          toggle === true? "Available players": `Selected player(${purchasePlayers.length}/6)`
+          toggle === true ? "Available players" : `Selected player(${purchasePlayers.length}/6)`
         }</h3>
         <div className='font-bold'>
           <button onClick={() => setToggle(true)} className={`py-3 border-1 px-4 border-gray-400 btn rounded-l-2xl border-r-0 ${toggle === true ? 'bg-[#E7FE29]' : ""}`}>Available</button>
@@ -52,7 +52,7 @@ function App() {
         </Suspense> : <SelectedPlayers removePlayer={removePlayer} purchasePlayers={purchasePlayers}></SelectedPlayers>
       }
 
-
+      <ToastContainer />
     </>
   )
 }
